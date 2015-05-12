@@ -31,7 +31,7 @@ class ExportSYM(bpy.types.Operator, ExportHelper):
         self.luminous = "LUMINOUS\n"
         self.luminous_count = 0
         self.luminous_faces = ""
-        self.housing = "HOUSING\n"
+        self.housing = "\nHOUSING\n"
         self.housing_count = 0
         self.housing_faces = ""
         self.footer = "\nEND ENTITY"

@@ -1,2 +1,2 @@
 # blender-export-sym
-Blender export script for creating AGI32 symbol files
+Blender export script for creating AGI32 symbol files (.sym)

@@ -2,11 +2,11 @@ import bpy
 from bpy_extras.io_utils import ExportHelper
 
 bl_info = {
-    "name":         "AGI32 .sym exporter",
+    "name":         "AGI32 SYM Format",
     "author":       "Will Lesieutre",
-    "blender":      (2,7,4),
+    "blender":      (2,74,0),
     "version":      (1,0,0),
-    "location":     "File > Import-Export",
+    "location":     "File > Export",
     "description":  "Export AGI32 luminaire symbol",
     "category":     "Import-Export",
     "warning":      "Exports objects in local coordinates, apply transformations if needed"

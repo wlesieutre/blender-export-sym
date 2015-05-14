@@ -2,14 +2,14 @@ import bpy
 from bpy_extras.io_utils import ExportHelper
 
 bl_info = {
-    "name":         "AGI32 .sym exporter test",
+    "name":         "AGI32 .sym exporter",
     "author":       "Will Lesieutre",
     "blender":      (2,7,4),
     "version":      (0,0,2),
     "location":     "File > Import-Export",
     "description":  "Export AGI32 luminaire symbol",
     "category":     "Import-Export",
-    "warning":      "In development, probably broken"
+    "warning":      "Exports objects in local coordinates, apply transformations if needed"
 }
 
 class ExportSYM(bpy.types.Operator, ExportHelper):
@@ -58,7 +58,31 @@ class ExportSYM(bpy.types.Operator, ExportHelper):
         # TODO: Iterate through objects's polygons/vertices and create face data
         #       for luminous_faces and housing_faces. Track face counts for each.
 
-        pass
+        precision = 3 # Hardcoded decimal digits for now, TODO: add config parameter for rounding
+
+        ob_verts_list = object.data.vertices
+
+        for poly in object.data.polygons:
+            poly_data = str(len(poly.vertices)) # First line of a polygon is the number of verts
+            for vert_index in poly.vertices:
+                vert_coords = object.data.vertices[vert_index].co
+                print(vert_coords)
+                vert_rounded = [round(vert_coords[0],precision), round(vert_coords[1],precision), round(vert_coords[2],precision)]
+                # Append the vertex to poly_data
+                poly_data += "\n" + str(vert_rounded[0]) + "  " + str(vert_rounded[1]) + "  " + str(vert_rounded[2])
+                # TODO: Possible to convert a vector object with join?
+
+            # Depending on the material channel assigned to the face, append poly_data to either 
+            # the LUMINOUS or HOUSING section.
+            # Increment the luminous and housing face counts, they're needed at the start of each section.
+            if poly.material_index == 0:
+                self.housing_count += 1
+                self.housing_faces += "\n" + poly_data
+            elif poly.material_index == 1:
+                self.luminous_count += 1
+                self.luminous_faces += "\n" + poly_data
+            else:
+                pass # TODO: Need to do anything with invalid material channels, or just drop the face?
 
 
 def menu_export_func(self, context):

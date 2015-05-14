@@ -10,7 +10,7 @@ Once installed and activated, the exporter can be found under File > Export >
 
 ## Known Issues
 
-The exporter doesn't export anything. But it's a planned feature!
+The objects are exported using local coordinates. Apply any scale/rotate transformations before exporting, and have the objects' origins aligned at the symbol's pivot. 
 
 ## .sym File Format
 
@@ -55,4 +55,4 @@ The .sym format is a simple text file listing the number of faces in each catego
      1  -1   1
     ENDENTITY
 
-It is not necessary that numbers be aligned, as long as there is whitespace between them.
+It isn't necessary that numbers be aligned, as long as there's whitespace between them.

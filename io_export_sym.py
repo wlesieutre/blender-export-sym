@@ -53,10 +53,8 @@ class ExportSYM(bpy.types.Operator, ExportHelper):
 
         return {'FINISHED'}
 
-    def export_object(self, object):
 
-        # TODO: Iterate through objects's polygons/vertices and create face data
-        #       for luminous_faces and housing_faces. Track face counts for each.
+    def export_object(self, object):
 
         precision = 3 # Hardcoded decimal digits for now, TODO: add config parameter for rounding
 

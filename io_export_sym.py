@@ -5,7 +5,7 @@ bl_info = {
     "name":         "AGI32 .sym exporter",
     "author":       "Will Lesieutre",
     "blender":      (2,7,4),
-    "version":      (0,0,2),
+    "version":      (1,0,0),
     "location":     "File > Import-Export",
     "description":  "Export AGI32 luminaire symbol",
     "category":     "Import-Export",
